@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pay Park</string>
+
+    <string-array name="Parking_Time">
+        <item>4 hours</item>
+        <item>8 hours</item>
+        <item>12 hours</item>
+        <item>24 hours</item>
+    </string-array>
+
+    <string-array name="Select_Vehicle">
+        <item>Bike</item>
+        <item>Car</item>
+        <item>Truck</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

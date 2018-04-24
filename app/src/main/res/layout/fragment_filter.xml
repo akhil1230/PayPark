@@ -1,0 +1,74 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c7bdbd"
+    tools:context="com.akhil.nikhil.paypark.FilterFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="#9b8f8f">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#e0e0e0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Vehicle"
+            android:layout_marginTop="29dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:id="@+id/sel_vehicle"
+            android:textColor="#222"
+            />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sel_vehicle"
+            android:id="@+id/vehi_panel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="29dp"
+            ></Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Set Park Time"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/sel_vehicle"
+            android:textSize="30dp"
+            android:id="@+id/parking_panel"
+            android:layout_marginTop="90dp"
+            android:textColor="#222"/>
+
+        <Spinner
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/parking_fare"
+            android:backgroundTint="#000"
+            android:layout_below="@id/parking_panel"
+            android:layout_marginTop="70dp"
+            android:layout_centerHorizontal="true"
+            >
+
+        </Spinner>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="proceed"
+        android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

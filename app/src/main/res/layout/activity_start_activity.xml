@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#696f62"
+    tools:context="com.akhil.nikhil.paypark.Start_activity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/car"
+        android:scaleType="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#a6030303"/>
+
+
+<ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:src="@drawable/parking"
+    android:layout_marginTop="100dp"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/logo"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/rect"
+        android:text="Continue as a user"
+        android:textColor="#fff"
+        android:id="@+id/user"
+        android:onClick="user_btn"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:text="Continue as service provider"
+        android:layout_marginBottom="100dp"
+        android:textColor="#fff"
+        android:background="@drawable/rect"
+        android:id="@+id/sp"
+        android:onClick="sp_btn"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c7bdbd"
+    tools:context="com.akhil.nikhil.paypark.user_home_page">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:id="@+id/top_bar"
+       android:weightSum="3">
+
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:text="MAP"
+           android:background="@color/colorPrimary"
+           android:padding="10dp"
+           android:textColor="#fff"
+           android:onClick="open_map"
+           android:gravity="center"/>
+
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:text="LIST"
+           android:background="@color/colorPrimary"
+           android:padding="10dp"
+           android:onClick="open_list"
+           android:textColor="#fff"
+           android:gravity="center"/>
+
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:text="FILTER"
+           android:textColor="#fff"
+           android:onClick="open_filter"
+           android:background="@color/colorPrimary"
+           android:padding="10dp"
+           android:gravity="center"/>
+
+
+   </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_bar"
+        android:id="@+id/main_frame"
+        ></FrameLayout>
+
+</RelativeLayout>
