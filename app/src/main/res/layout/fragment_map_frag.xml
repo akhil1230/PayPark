@@ -4,12 +4,27 @@
     android:layout_height="match_parent"
     tools:context=".map_frag">
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
 
   <ProgressBar
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
+      android:layout_gravity="bottom"
+     android:visibility="gone"
       android:id="@+id/progr"/>
+
+  <EditText
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Select City"
+      android:layout_marginTop="20dp"
+      android:textSize="30dp"
+      android:background="@drawable/rect"
+      />
 
   <com.google.android.gms.maps.MapView
       android:layout_width="match_parent"
@@ -18,6 +33,6 @@
 
   </com.google.android.gms.maps.MapView>
 
-
+  </LinearLayout>
 
 </FrameLayout>

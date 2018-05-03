@@ -14,7 +14,7 @@ public class Start_activity extends AppCompatActivity {
     }
 
     public void user_btn(View view) {
-        Intent i = new Intent(Start_activity.this,MainActivity.class);
+        Intent i = new Intent(Start_activity.this,UserSigin.class);
         startActivity(i);
     }
 

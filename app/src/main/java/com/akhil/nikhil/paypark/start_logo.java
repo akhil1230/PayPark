@@ -19,6 +19,7 @@ public class start_logo extends AppCompatActivity {
             @Override
             public void run() {
 
+
                 Intent i = new Intent(start_logo.this, Start_activity.class);
 
                 startActivity(i);

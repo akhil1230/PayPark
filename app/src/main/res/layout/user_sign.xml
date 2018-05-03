@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:background="#c7bdbd"
-    tools:context="com.akhil.nikhil.paypark.MainActivity">
+    tools:context="com.akhil.nikhil.paypark.UserSigin">
 
 
 
@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:layout_below="@id/profile"
         android:id="@+id/email"/>
 
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:hint="pasword"
         android:id="@+id/pass_id"
+        android:inputType="textPassword"
         android:layout_below="@id/email"/>
     <TextView
         android:layout_width="wrap_content"

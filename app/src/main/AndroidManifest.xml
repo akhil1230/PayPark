@@ -7,6 +7,8 @@
 
     <uses-feature android:name="android.hardware.location.gps" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/parking"
@@ -14,27 +16,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.akhil.nikhil.paypark.start_logo">
+        <activity android:name=".start_logo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.akhil.nikhil.paypark.MainActivity" />
-        <activity android:name="com.akhil.nikhil.paypark.create_newactivity" />
-        <activity android:name="com.akhil.nikhil.paypark.create_sp" />
-        <activity android:name="com.akhil.nikhil.paypark.sp_login" />
-        <activity android:name="com.akhil.nikhil.paypark.user_home_page" />
-        <activity android:name="com.akhil.nikhil.paypark.pay" />
-        <activity android:name="com.akhil.nikhil.paypark.sp_services" />
+        <activity android:name=".UserSigin" />
+        <activity android:name=".user_createacc" />
+        <activity android:name=".create_sp" />
+        <activity android:name=".sp_login" />
+        <activity android:name=".user_home_page" />
+        <activity android:name=".pay" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCtGeTLwTNYf6DLhizLolnRDHGkGt5RKWg" />
+            android:value="AIzaSyCcAY_nsXH2M7yJ8ACE1VYVj0I2FrTbnDM" />
 
-        <activity android:name="com.akhil.nikhil.paypark.Start_activity"></activity>
+        <activity android:name=".Start_activity" />
+        <activity android:name=".Sp_home" />
+        <activity android:name=".sp_end" />
+        <activity android:name=".User_end" />
+        <activity android:name=".PlacePickerActivity"></activity>
     </application>
 
 </manifest>

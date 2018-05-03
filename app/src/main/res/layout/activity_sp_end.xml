@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.akhil.nikhil.paypark.sp_end">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="855dp"
+        android:src="@drawable/cars"
+
+        android:scaleType="centerCrop"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#a61d1d1d"
+       />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/parking"
+        android:id="@+id/logo_park"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay Park"
+        android:textStyle="bold"
+        android:textColor="#FF80EE2E"
+        android:layout_centerVertical="true"
+        android:textSize="50dp"
+        android:layout_toRightOf="@id/logo_park"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/park"/>
+
+</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank You!"
+        android:layout_below="@id/park"
+        android:id="@+id/thank"
+        android:textSize="39dp"
+        android:layout_marginTop="29dp"
+        android:textStyle="bold"
+        android:textColor="#f4f4f4"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keep on updating time to time."
+        android:id="@+id/update"
+        android:textColor="#f7f7f7"
+        android:textSize="60dp"
+        android:layout_below="@id/thank"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:background="#222"
+        android:textColor="#FF80EE2E"
+        android:textSize="29dp"
+        />
+</LinearLayout>
+</RelativeLayout>

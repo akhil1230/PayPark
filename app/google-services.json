@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "583141547629",
-    "firebase_url": "https://pay-park-56ecc.firebaseio.com",
-    "project_id": "pay-park-56ecc",
-    "storage_bucket": "pay-park-56ecc.appspot.com"
+    "project_number": "16631950796",
+    "firebase_url": "https://paypark-aa4e4.firebaseio.com",
+    "project_id": "paypark-aa4e4",
+    "storage_bucket": "paypark-aa4e4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:583141547629:android:547288e4c7a3e387",
+        "mobilesdk_app_id": "1:16631950796:android:4e5514d334bd4f77",
         "android_client_info": {
-          "package_name": "com.example.nikhil.paypark"
+          "package_name": "com.akhil.nikhil.paypark"
         }
       },
       "oauth_client": [
         {
-          "client_id": "583141547629-g45skvl97gple5fpmka9lpu20le957fl.apps.googleusercontent.com",
+          "client_id": "16631950796-9si5oepccbhjvb2d88vq9sb8gf99o573.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akhil.nikhil.paypark",
+            "certificate_hash": "30ff2dedebf4ce8c233c2e1d241f0d67ca22839c"
+          }
+        },
+        {
+          "client_id": "16631950796-24ddnuu116b07fi5755jp7l7fvlvjjv0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCtGeTLwTNYf6DLhizLolnRDHGkGt5RKWg"
+          "current_key": "AIzaSyCEgr7P-BaxtuHZY3q-qVE5Wu4YkdiWX8w"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16631950796-24ddnuu116b07fi5755jp7l7fvlvjjv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

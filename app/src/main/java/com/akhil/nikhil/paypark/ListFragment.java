@@ -26,4 +26,5 @@ public class ListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
 
+
 }

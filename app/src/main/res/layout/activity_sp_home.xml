@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1acb69e"
+    android:padding="20dp"
+    tools:context=".Sp_home">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/parkedcar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="50dp"
+        android:id="@+id/parked_car"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Availability:-"
+        android:layout_below="@id/parked_car"
+        android:textSize="30dp"
+        android:textColor="#222"
+        android:id="@+id/avail"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/avail"
+        android:layout_marginTop="10dp"
+        android:id="@+id/on_off_group"
+        android:layout_below="@+id/parked_car">
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="on"
+        android:id="@+id/on_radio"
+        android:textSize="20dp"/>3
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="off"
+            android:id="@+id/off_radio"
+            android:textSize="20dp"/>
+    </RadioGroup>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/avail"
+        android:background="#e8e8e8"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Parking space left"
+            android:layout_below="@id/avail"
+            android:id="@+id/space"
+            android:textSize="20dp"
+            android:inputType="number"
+            android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/space"
+        android:id="@+id/car_charge">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car charges"
+            android:textSize="25dp"
+            android:textColor="#222"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="charges"
+            android:inputType="number"
+            android:id="@+id/car_id"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="per 4 hour"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/car_charge"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bike charges"
+            android:textSize="25dp"
+            android:textColor="#222"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="charges"
+            android:inputType="number"
+            android:id="@+id/bike_id"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="per 4 hour"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+       android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="sub_sp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
