@@ -37,10 +37,20 @@ public class PlacePickerActivity extends AppCompatActivity {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
-                String toastMsg = String.format("Place: %s", place.getAddress());
+                String toastMsg = String.format("%s", place.getAddress());
 
                 System.out.println(toastMsg);
-                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent();
+                i.putExtra("place" , toastMsg);
+                i.putExtra("lat" , String.valueOf(place.getLatLng().latitude));
+                i.putExtra("lng" , String.valueOf(place.getLatLng().longitude));
+
+
+                setResult(1000 , i);
+
+                finish();
             }
         }
     }

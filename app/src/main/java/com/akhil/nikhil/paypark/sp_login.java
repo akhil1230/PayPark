@@ -42,8 +42,10 @@ public class sp_login extends AppCompatActivity {
 
             EditText password_pt = findViewById(R.id.pass_id);
             String password_s = password_pt.getText().toString();
-            if (password_s.length()<= 8) {
+            if (password_s.length()< 8) {
             password_pt.setError("password must contain 8 characters");
+
+            return;
             }
 
             final ProgressDialog progress_bar = new ProgressDialog(sp_login.this);
@@ -61,6 +63,10 @@ public class sp_login extends AppCompatActivity {
                     if(task.isSuccessful()) {
                         Intent i = new Intent(sp_login.this, Sp_home.class);
                         startActivity(i);
+                    }
+
+                    else {
+                        Toast.makeText(sp_login.this , "invalid credentials" , Toast.LENGTH_SHORT).show();
                     }
 
                 }

@@ -18,10 +18,23 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class user_createacc extends AppCompatActivity {
 
+    EditText address_n ;
+
+    private String lat , lng ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_createacc);
+
+        address_n = findViewById(R.id.add_id);
+
+        address_n.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult( new Intent(user_createacc.this , PlacePickerActivity.class) , 100);
+            }
+        });
     }
 
     public void createacc(View view)
@@ -35,13 +48,13 @@ public class user_createacc extends AppCompatActivity {
 
         EditText mob_n = findViewById(R.id.mob_id);
         final String mob_s = mob_n.getText().toString();
-        if (mob_s.length() <= 10) {
+        if (mob_s.length() < 10) {
             mob_n.setError("must contain 10 characters");
             return;
         }
 
 
-        EditText address_n = findViewById(R.id.add_id);
+
         final String address_s = address_n.getText().toString();
         if (address_s.length() <= 4) {
             address_n.setError("must contain 4 characters");
@@ -51,7 +64,7 @@ public class user_createacc extends AppCompatActivity {
 
         EditText pass_n = findViewById(R.id.pass_id);
         final String pass_s = pass_n.getText().toString();
-        if (pass_s.length()<=8)
+        if (pass_s.length()<8)
         {
             pass_n.setError("must contain 8 characters");
             return;
@@ -80,12 +93,14 @@ public class user_createacc extends AppCompatActivity {
                 progress_bar.hide();
 
                 if (task.isSuccessful()) {
-                    user_create_account data = new user_create_account(name_s, address_s,mob_s);
+                    user_create_account data = new user_create_account(name_s, address_s,mob_s , lat , lng);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     database.getReference().child("sp").child(email_s.replace(".","")).setValue(data);
                     Toast.makeText(user_createacc.this, "done", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(user_createacc.this, user_home_page.class);
                     startActivity(i);
+
+                    finish();
                 } else {
                     Toast.makeText(user_createacc.this, "error try again", Toast.LENGTH_SHORT).show();
                 }
@@ -95,5 +110,23 @@ public class user_createacc extends AppCompatActivity {
         f_auth.createUserWithEmailAndPassword(email_s, pass_s).addOnCompleteListener(listener);
 
         }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100)
+        {
+            address_n.setText(data.getStringExtra("place"));
+
+            lat = data.getStringExtra("lat");
+
+            lng = data.getStringExtra("lng");
+
+        }
+    }
+
+
     }
 

@@ -1,11 +1,10 @@
 package com.akhil.nikhil.paypark;
 
-
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,11 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+public class ProceedFilterActivity extends AppCompatActivity {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ListFragment extends Fragment {
+
 
 
     List<createaccount> parking_list ;
@@ -37,38 +34,20 @@ public class ListFragment extends Fragment {
     LinearLayout search_view ;
 
 
-    public ListFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_proceed_filter);
 
         parking_list = new ArrayList<>();
 
-        search_view = view.findViewById(R.id.search_view);
 
-        recyclerView = view.findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.recycler);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this , LinearLayoutManager.VERTICAL , false));
 
 
-        search_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivityForResult(new Intent(getActivity() , PlacePickerActivity.class) , 100);
-            }
-        });
 
 
         get_parkings();
@@ -79,7 +58,7 @@ public class ListFragment extends Fragment {
     public class view_holder extends RecyclerView.ViewHolder
     {
 
-        public TextView location , car_charges , bike_charges ;
+        public TextView location , car_charges , bike_charges , car_heading , bike_heading ;
 
         public view_holder(View itemView) {
             super(itemView);
@@ -89,6 +68,10 @@ public class ListFragment extends Fragment {
             car_charges = itemView.findViewById(R.id.car_charge);
 
             bike_charges = itemView.findViewById(R.id.bike_charge);
+
+            car_heading = itemView.findViewById(R.id.car_heading);
+
+            bike_heading = itemView.findViewById(R.id.bike_heading);
 
         }
     }
@@ -113,14 +96,26 @@ public class ListFragment extends Fragment {
 
             holder.car_charges.setText(data.car_charges);
 
+            if(getIntent().getStringExtra("type").equals("Car"))
+            {
+                holder.bike_charges.setVisibility(View.GONE);
+                holder.bike_heading.setVisibility(View.GONE);
+            }
+            else {
+
+                holder.car_charges.setVisibility(View.GONE);
+                holder.car_heading.setVisibility(View.GONE);
+            }
+
             holder.location.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String uri = String.format(Locale.ENGLISH, "geo:%s,%s", data.lat, data.lng);
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                    getContext().startActivity(intent);
+                    startActivity(intent);
                 }
             });
+
 
 
         }
@@ -144,9 +139,29 @@ public class ListFragment extends Fragment {
                 {
                     createaccount data = dataSnapshot1.getValue(createaccount.class);
 
-                    if(data.available.equals("yes")) {
 
-                        parking_list.add(data);
+
+                    if(data.available.equals("yes"))
+                    {
+
+                        if(getIntent().getStringExtra("type").equals("Car"))
+                        {
+                            if(data.car_charges.equals(getIntent().getStringExtra("rate")))
+                            {
+                                parking_list.add(data);
+
+                            }
+                        }
+
+                        if(getIntent().getStringExtra("type").equals("Bike"))
+                        {
+                            if(data.bike_charges.equals(getIntent().getStringExtra("rate")))
+                            {
+                                parking_list.add(data);
+
+                            }
+                        }
+
                     }
                 }
 
