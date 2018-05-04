@@ -13,24 +13,24 @@
         <item>Select</item>
         <item>Bike</item>
         <item>Car</item>
-        <item>Truck</item>
+
     </string-array>
 
 
-    <string-array name="bike_rent">
+    <string-array name="rent">
         <item>Select</item>
+        <item>4 hours-Rs10/-</item>
         <item>4 hours-Rs20/-</item>
-        <item>8 hours-Rs40/-</item>
-        <item>12 hours-Rs60</item>
-        <item>24 hours-Rs80</item>
-    </string-array>
-
-    <string-array name="car_rent">
-        <item>Select</item>
         <item>4 hours-Rs30/-</item>
-        <item>8 hours-Rs60/-</item>
-        <item>12 hours-Rs90</item>
-        <item>24 hours-Rs120</item>
+        <item>4 hours-Rs40/-</item>
+        <item>4 hours-Rs50/-</item>
+        <item>4 hours-Rs60/-</item>
+        <item>4 hours-Rs70</item>
+        <item>4 hours-Rs80</item>
+        <item>4 hours-Rs90</item>
+        <item>4 hours-Rs100</item>
+        <item>4 hours-Rs120</item>
+        <item>4 hours-Rs130</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

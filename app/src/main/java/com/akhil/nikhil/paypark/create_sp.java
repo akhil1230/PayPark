@@ -2,6 +2,7 @@ package com.akhil.nikhil.paypark;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,17 +22,23 @@ public class create_sp extends AppCompatActivity {
 
     EditText address_ad ;
 
+    private String lat , lng ;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_sp);
+
+
 
         address_ad = findViewById(R.id.add_id);
 
         address_ad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity( new Intent(create_sp.this , PlacePickerActivity.class));
+                startActivityForResult( new Intent(create_sp.this , PlacePickerActivity.class) , 100);
             }
         });
     }
@@ -56,15 +63,17 @@ public class create_sp extends AppCompatActivity {
 
         EditText mob_no = findViewById(R.id.mob_id);
         final String mob_s = mob_no.getText().toString();
-        if (mob_s.length() <= 10) {
+        if (mob_s.length() < 10) {
             mob_no.setError("mob no. must contain 10 digits");
+            return;
         }
 
         EditText pass_d = findViewById(R.id.pass_id);
         String pass = pass_d.getText().toString();
-        if (pass.length() <= 8)
+        if (pass.length() < 8)
         {
             pass_d.setError("password must contain 8 characters");
+            return;
         }
 
         EditText park_sp = findViewById(R.id.p_space);
@@ -83,12 +92,20 @@ public class create_sp extends AppCompatActivity {
                 progress_bar.hide();
 
                 if (task.isSuccessful()) {
-                    createaccount data = new createaccount(name_s, address_s,mob_s, park);
+                    createaccount data = new createaccount(name_s, address_s,mob_s, park , lat , lng , "" , "" , "yes" , park);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    database.getReference().child("sp").child(email_s.replace(".","")).setValue(data);
+                    database.getReference().child("parking_details").child(email_s.replace(".","")).setValue(data);
                     Toast.makeText(create_sp.this, "done", Toast.LENGTH_SHORT).show();
+
+
+                    SharedPreferences.Editor sp = getSharedPreferences("user_info" , MODE_PRIVATE).edit();
+
+                    sp.putString("user_type" , "sp").commit();
+
+
                     Intent i = new Intent(create_sp.this, Sp_home.class);
                     startActivity(i);
+                    finish();
                 } else {
                     Toast.makeText(create_sp.this, "error try again", Toast.LENGTH_SHORT).show();
                 }
@@ -101,6 +118,22 @@ public class create_sp extends AppCompatActivity {
 
 
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100)
+        {
+            address_ad.setText(data.getStringExtra("place"));
+
+            lat = data.getStringExtra("lat");
+
+            lng = data.getStringExtra("lng");
+
+        }
     }
 }
 

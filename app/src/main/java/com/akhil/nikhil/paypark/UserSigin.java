@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,7 +43,7 @@ public class UserSigin extends AppCompatActivity {
 
         EditText password_pt = findViewById(R.id.pass_id);
         String password_s = password_pt.getText().toString();
-        if (password_s.length()<= 8) {
+        if (password_s.length()< 8) {
             password_pt.setError("password must contain 8 characters");
             return;
         }
@@ -62,6 +63,10 @@ public class UserSigin extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     Intent i = new Intent(UserSigin.this, user_home_page.class);
                     startActivity(i);
+                }
+
+                else {
+                    Toast.makeText(UserSigin.this , "invalid credentials" , Toast.LENGTH_SHORT).show();
                 }
 
             }

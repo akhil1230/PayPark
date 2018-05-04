@@ -32,7 +32,7 @@
 
 
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/sel_vehicle"
             android:id="@+id/vehi_panel"
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Set Park Time"
+            android:text="Set Parking Rate"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/sel_vehicle"
             android:textSize="30dp"
@@ -53,7 +53,7 @@
             android:textColor="#130909"/>
 
         <Spinner
-            android:layout_width="40dp"
+            android:layout_width="200dp"
             android:layout_height="40dp"
             android:id="@+id/parking_fare"
             android:backgroundTint="#000"
@@ -70,7 +70,8 @@
         android:text="proceed"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:id="@+id/proceed_filter"/>
         </RelativeLayout>
     </LinearLayout>
 

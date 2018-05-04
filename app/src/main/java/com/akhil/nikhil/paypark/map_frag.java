@@ -2,6 +2,7 @@ package com.akhil.nikhil.paypark;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -18,9 +20,17 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class map_frag extends Fragment implements OnMapReadyCallback {
@@ -31,6 +41,10 @@ public class map_frag extends Fragment implements OnMapReadyCallback {
 
     private FusedLocationProviderClient mFusedLocationClient;
 
+    List<createaccount> parking_list ;
+
+
+    LinearLayout search_view ;
 
     public map_frag() {
         // Required empty public constructor
@@ -47,6 +61,8 @@ public class map_frag extends Fragment implements OnMapReadyCallback {
         progress_bar.setMessage("Create account");
         progress_bar.show();
 
+        parking_list = new ArrayList<>();
+
         return view;
     }
 
@@ -56,6 +72,15 @@ public class map_frag extends Fragment implements OnMapReadyCallback {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
+        search_view = view.findViewById(R.id.search_view);
+
+        search_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivityForResult(new Intent(getActivity() , PlacePickerActivity.class) , 100);
+            }
+        });
 
         MapView mapFragment = view.findViewById(R.id.map);
         mapFragment.onCreate(savedInstanceState);
@@ -84,12 +109,66 @@ public class map_frag extends Fragment implements OnMapReadyCallback {
 
                             LatLng sydney = new LatLng(location.getLatitude(), location.getLongitude());
                             mMap.addMarker(new MarkerOptions().position(sydney).title("My Location"));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12.0f));
+
                         }
                     }
                 });
+
+        get_parkings();
     }
 
 
 
+    private void get_parkings()
+    {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+        database.getReference().child("parking_details").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                {
+                    createaccount data = dataSnapshot1.getValue(createaccount.class);
+
+                    if(data.available.equals("yes")) {
+
+                        mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(Double.parseDouble(data.lat), Double.parseDouble(data.lng)))
+                                .title("Car Rs " + data.car_charges + " , " + " Bike Rs " + data.bike_charges)
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100)
+        {
+
+            LatLng sydney = new LatLng(Double.parseDouble(data.getStringExtra("lat")), Double.parseDouble(data.getStringExtra("lng")));
+            mMap.addMarker(new MarkerOptions().position(sydney).title("My Location"));
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12.0f));
+
+        }
+
+    }
 }
