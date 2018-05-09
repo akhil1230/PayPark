@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/ic_map"
+        android:title="MAP" />
+
+    <item
+        android:id="@+id/navigation_list"
+        android:icon="@drawable/ic_list"
+        android:title="LIST" />
+
+    <item
+        android:id="@+id/navigation_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="FILTER" />
+
+    <item
+        android:id="@+id/navigation_booking"
+        android:icon="@drawable/ic_bookings"
+        android:title="BOOKING" />
+
+</menu>

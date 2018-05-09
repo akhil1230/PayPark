@@ -22,6 +22,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -98,6 +99,17 @@ public class map_frag extends Fragment implements OnMapReadyCallback {
 
         progress_bar.hide();
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+
+                new BookingDialog(getContext() , R.style.Theme_Dialog , (createaccount) marker.getTag()).show();
+
+                return true;
+            }
+        });
+
 
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
@@ -136,11 +148,13 @@ public class map_frag extends Fragment implements OnMapReadyCallback {
 
                     if(data.available.equals("yes")) {
 
+                        data.sp_email = dataSnapshot1.getKey();
+
                         mMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(Double.parseDouble(data.lat), Double.parseDouble(data.lng)))
                                 .title("Car Rs " + data.car_charges + " , " + " Bike Rs " + data.bike_charges)
                                 .icon(BitmapDescriptorFactory
-                                        .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_GREEN))).setTag(data);
                     }
                 }
 
