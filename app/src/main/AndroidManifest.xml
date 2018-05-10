@@ -39,7 +39,8 @@
         <activity android:name=".sp_end" />
         <activity android:name=".User_end" />
         <activity android:name=".PlacePickerActivity" />
-        <activity android:name=".ProceedFilterActivity"></activity>
+        <activity android:name=".ProceedFilterActivity" />
+
     </application>
 
 </manifest>
