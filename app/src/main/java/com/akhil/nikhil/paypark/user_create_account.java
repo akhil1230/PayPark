@@ -6,7 +6,7 @@ package com.akhil.nikhil.paypark;
 
 public class user_create_account {
 
-    public String name,address,mobile , lat , lng;
+    public String name,address , mobile , lat , lng;
 
     user_create_account()
     {

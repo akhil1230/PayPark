@@ -2,18 +2,23 @@ package com.akhil.nikhil.paypark;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by charanghumman on 09/05/18.
@@ -31,10 +36,14 @@ public class BookingDialog extends Dialog
 
     EditText card_number , card_expiry ;
 
+    ImageView parking_img ;
+
     public BookingDialog(@NonNull final Context context, int themeResId , final createaccount data) {
         super(context, themeResId);
 
         setContentView(R.layout.book_dialog_layout);
+
+        parking_img = findViewById(R.id.parking_img);
 
         address = findViewById(R.id.address);
 
@@ -57,6 +66,14 @@ public class BookingDialog extends Dialog
         card_number = findViewById(R.id.card_number);
 
         card_expiry = findViewById(R.id.card_expiry);
+
+        FirebaseStorage.getInstance().getReference().child("images").child(data.sp_email.replace(".","")).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                Picasso.with(context).load(uri).into(parking_img  );
+            }
+        });
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override

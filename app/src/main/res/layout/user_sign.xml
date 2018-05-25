@@ -8,6 +8,16 @@
     android:background="#c7bdbd"
     tools:context="com.akhil.nikhil.paypark.UserSigin">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USER"
+        android:layout_below="@id/profile"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:id="@+id/user"/>
+
 
 
     <ImageView
@@ -20,7 +30,6 @@
 
 
         />
-
 
     <EditText
         android:layout_width="match_parent"
@@ -44,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create new account"
-        android:layout_below="@id/fblogin"
+        android:layout_below="@id/glogin"
         android:id="@+id/log_id"
         android:textStyle="bold"
         android:textSize="20dp"
@@ -54,6 +63,13 @@
         android:clickable="true"
 
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forget Password?"
+        android:layout_below="@id/log_id"
+        android:textSize="18dp"
+        android:onClick="forget_pass"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -80,20 +96,21 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/fblogo"
-        android:id="@+id/fblogin"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/altsign_id"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:src="@drawable/search"
         android:layout_marginTop="10dp"
         android:id="@+id/glogin"
         android:layout_below="@id/altsign_id"
-        android:layout_centerInParent="true"
         android:layout_marginRight="10dp"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="20dp"
+    android:layout_marginTop="15dp"
+    android:text="Google"
+    android:onClick="googlein"
+    android:layout_toRightOf="@id/glogin"
+    android:layout_below="@id/altsign_id"/>
+
 
 </RelativeLayout>

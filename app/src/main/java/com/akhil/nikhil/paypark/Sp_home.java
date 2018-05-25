@@ -2,23 +2,28 @@ package com.akhil.nikhil.paypark;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.akhil.nikhil.paypark.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 public class Sp_home extends AppCompatActivity {
 
@@ -35,6 +40,11 @@ public class Sp_home extends AppCompatActivity {
 
     EditText bike_n ;
 
+    public static final int PICK_IMAGE = 1;
+
+    ImageView parking_image ;
+
+    Uri image_uri  ;
 
 
     @Override
@@ -43,6 +53,8 @@ public class Sp_home extends AppCompatActivity {
         setContentView(R.layout.activity_sp_home);
 
         parksp_n  = findViewById(R.id.space);
+
+        parking_image = findViewById(R.id.parked_car);
 
         on_off_radio = findViewById(R.id.on_off_group);
 
@@ -119,7 +131,14 @@ public class Sp_home extends AppCompatActivity {
             }
         });
 
+        FirebaseStorage storage = FirebaseStorage.getInstance();
 
+        if(image_uri != null) {
+
+            storage.getReference().child("images").child(email).putFile(image_uri);
+
+
+        }
 
 
 
@@ -170,8 +189,42 @@ public class Sp_home extends AppCompatActivity {
                 }
             });
 
+            FirebaseStorage.getInstance().getReference().child("images").child(email).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+
+                    Picasso.with(Sp_home.this).load(uri).into(parking_image  );
+                }
+            });
+
+
+
+        }
+
+    public void pick_image(View view) {
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == PICK_IMAGE) {
+            //TODO: action
+
+            Uri selectedImage = data.getData();
+
+            parking_image.setImageURI(selectedImage);
+
+            image_uri = selectedImage;
 
 
         }
     }
+}
 

@@ -79,6 +79,8 @@
         android:background="#222"
         android:textColor="#FF80EE2E"
         android:textSize="29dp"
+        android:clickable="true"
+        android:onClick="finish"
         />
 </LinearLayout>
 </RelativeLayout>

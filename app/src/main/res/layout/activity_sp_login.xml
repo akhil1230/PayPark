@@ -16,7 +16,15 @@
         android:id="@+id/profile"
         android:layout_centerHorizontal="true"
         />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SERVICE PROVIDER"
+        android:layout_below="@id/profile"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:id="@+id/user"/>
 
 
     <EditText
@@ -53,6 +61,13 @@
         android:clickable="true"
 
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/log_id"
+        android:text="Forget Password?"
+        android:textSize="18dp"
+        android:onClick="forget_pass"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -80,20 +95,20 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/fblogo"
-        android:id="@+id/fblogin"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/altsign_id"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:src="@drawable/search"
         android:layout_marginTop="10dp"
         android:id="@+id/glogin"
         android:layout_below="@id/altsign_id"
-       android:layout_centerInParent="true"
+
         android:layout_marginRight="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:text="Google"
+        android:onClick="google"
+        android:layout_toRightOf="@id/glogin"
+        android:layout_below="@id/altsign_id"/>
 
 </RelativeLayout>

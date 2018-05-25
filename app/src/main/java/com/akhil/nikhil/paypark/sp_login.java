@@ -42,7 +42,7 @@ public class sp_login extends AppCompatActivity {
 
             EditText password_pt = findViewById(R.id.pass_id);
             String password_s = password_pt.getText().toString();
-            if (password_s.length()< 8) {
+            if (password_s.length()< 7) {
             password_pt.setError("password must contain 8 characters");
 
             return;
@@ -50,7 +50,7 @@ public class sp_login extends AppCompatActivity {
 
             final ProgressDialog progress_bar = new ProgressDialog(sp_login.this);
             progress_bar.setTitle("please wait");
-            progress_bar.setMessage("Create account");
+            progress_bar.setMessage("Creating account");
             progress_bar.show();
 
             FirebaseAuth f_auth = FirebaseAuth.getInstance();
@@ -63,6 +63,7 @@ public class sp_login extends AppCompatActivity {
                     if(task.isSuccessful()) {
                         Intent i = new Intent(sp_login.this, Sp_home.class);
                         startActivity(i);
+                        finish();
                     }
 
                     else {
@@ -77,6 +78,28 @@ public class sp_login extends AppCompatActivity {
 
 
         }
+
+    public void google(View view) {
+    }
+
+    public void forget_pass(View view) {
+        EditText email = findViewById(R.id.email);
+        String email_s =email.getText().toString();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email_s).matches()) {
+            email.setError("please enter valid email");
+            return;}
+        FirebaseAuth Auth = FirebaseAuth.getInstance();
+        Auth.sendPasswordResetEmail(email_s).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(sp_login.this,"password link sent",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+    }
 }
 
 

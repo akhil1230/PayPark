@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,7 +45,7 @@ public class create_sp extends AppCompatActivity {
     public void createacc(View view) {
         EditText name_nm = findViewById(R.id.name);
         final String name_s = name_nm.getText().toString();
-        if (name_s.length() <= 4) {
+        if (name_s.length() <= 3) {
             name_nm.setError("name must contain 4 characters");
             return;
         }
@@ -63,14 +62,14 @@ public class create_sp extends AppCompatActivity {
 
         EditText mob_no = findViewById(R.id.mob_id);
         final String mob_s = mob_no.getText().toString();
-        if (mob_s.length() < 10) {
+        if (mob_s.length() < 9) {
             mob_no.setError("mob no. must contain 10 digits");
             return;
         }
 
         EditText pass_d = findViewById(R.id.pass_id);
         String pass = pass_d.getText().toString();
-        if (pass.length() < 8)
+        if (pass.length() < 7)
         {
             pass_d.setError("password must contain 8 characters");
             return;
@@ -94,6 +93,11 @@ public class create_sp extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     createaccount data = new createaccount(name_s, address_s,mob_s, park , lat , lng , "" , "" , "yes" , park);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                    service_provider_basic_details basic_details = new service_provider_basic_details(name_s , address_s , mob_s);
+
+                    database.getReference().child("service_provider").child(email_s.replace(".","")).setValue(basic_details);
+
                     database.getReference().child("parking_details").child(email_s.replace(".","")).setValue(data);
                     Toast.makeText(create_sp.this, "done", Toast.LENGTH_SHORT).show();
 
